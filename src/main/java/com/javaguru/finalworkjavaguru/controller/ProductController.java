@@ -3,7 +3,7 @@ package com.javaguru.finalworkjavaguru.controller;
 
 import com.javaguru.finalworkjavaguru.repository.entity.DiscountToSet;
 import com.javaguru.finalworkjavaguru.repository.entity.Product;
-import com.javaguru.finalworkjavaguru.repository.entity.ProductCategories;
+import com.javaguru.finalworkjavaguru.repository.entity.ProductCategory;
 import com.javaguru.finalworkjavaguru.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -44,12 +44,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/categories/{category}", method = RequestMethod.GET)
-    public List<Product> getAllProductsByCategory(@PathVariable("category") ProductCategories category) {
+    public List<Product> getAllProductsByCategory(@PathVariable("category") ProductCategory category) {
         return productService.getAllProductsByCategory(category);
     }
 
     @RequestMapping(value = "/categories/{category}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setDiscountByProductCategory(@PathVariable("category") ProductCategories category, @RequestBody DiscountToSet discountToSet) {
+    public void setDiscountByProductCategory(@PathVariable("category") ProductCategory category, @RequestBody DiscountToSet discountToSet) {
         productService.setDiscountByProductCategory(category, discountToSet);
     }
 }

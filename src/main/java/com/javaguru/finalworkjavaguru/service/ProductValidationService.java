@@ -21,6 +21,4 @@ public class ProductValidationService {
     private boolean validateCategory(Product product) {
         return !(product.getCategory() == null);
     }
-
-
 }

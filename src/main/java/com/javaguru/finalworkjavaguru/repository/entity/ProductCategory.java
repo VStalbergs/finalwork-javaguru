@@ -1,5 +1,5 @@
 package com.javaguru.finalworkjavaguru.repository.entity;
 
-public enum ProductCategories {
+public enum ProductCategory {
     FRUITS, VEGETABLES, DRINKS, MEAT, DAIRY, BAKERY
 }

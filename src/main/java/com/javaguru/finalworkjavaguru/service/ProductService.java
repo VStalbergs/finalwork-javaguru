@@ -3,7 +3,7 @@ package com.javaguru.finalworkjavaguru.service;
 import com.javaguru.finalworkjavaguru.repository.ProductRepository;
 import com.javaguru.finalworkjavaguru.repository.entity.DiscountToSet;
 import com.javaguru.finalworkjavaguru.repository.entity.Product;
-import com.javaguru.finalworkjavaguru.repository.entity.ProductCategories;
+import com.javaguru.finalworkjavaguru.repository.entity.ProductCategory;
 import com.javaguru.finalworkjavaguru.service.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,10 +34,7 @@ public class ProductService {
     }
 
     public void saveProduct(Product product) {
-        ProductValidationService productValidationService = new ProductValidationService();
-        if (productValidationService.validateProduct(product)){
-            this.productRepository.save(product);
-        }
+        this.productRepository.save(product);
     }
 
     public void updateProduct(Product product) {
@@ -56,11 +53,11 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public List<Product> getAllProductsByCategory(ProductCategories category) {
+    public List<Product> getAllProductsByCategory(ProductCategory category) {
         return new ArrayList<>(productRepository.getAllByCategory(category));
     }
 
-    public void setDiscountByProductCategory(ProductCategories category, DiscountToSet discountToSet) {
+    public void setDiscountByProductCategory(ProductCategory category, DiscountToSet discountToSet) {
         productRepository.getAllByCategory(category)
                 .stream()
                 .peek(product -> product.updateDiscount(discountToSet))
