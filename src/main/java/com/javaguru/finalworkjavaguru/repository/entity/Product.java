@@ -1,6 +1,7 @@
 package com.javaguru.finalworkjavaguru.repository.entity;
 
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
+@Validated
 public class Product {
 
     @Id
@@ -19,7 +21,7 @@ public class Product {
     @NotEmpty(message = "{name.notEmpty}")
     private String name;
 
-    @NotNull(message = "{price.notNull}")
+    @NotEmpty(message = "{price.notNull}")
     private BigDecimal price;
 
     @NotNull(message = "{category.notNull}")

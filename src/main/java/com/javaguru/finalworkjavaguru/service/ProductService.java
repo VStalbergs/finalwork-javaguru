@@ -61,7 +61,6 @@ public class ProductService {
         productRepository.getAllByCategory(category)
                 .stream()
                 .peek(product -> product.updateDiscount(discountToSet))
-                .map(productRepository::save)
-                .count();
+                .forEach(productRepository::save);
     }
 }
