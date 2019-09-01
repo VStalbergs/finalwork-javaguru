@@ -21,15 +21,24 @@ public class Product {
     @NotEmpty(message = "{name.notEmpty}")
     private String name;
 
-    @NotEmpty(message = "{price.notNull}")
-    private BigDecimal price;
+    @NotNull(message = "{price.notNull}")
+    private BigDecimal price = new BigDecimal("0");
 
     @NotNull(message = "{category.notNull}")
     @Enumerated(value = EnumType.STRING)
     private ProductCategory category;
 
-    private BigDecimal discount;
+    private BigDecimal discount= new BigDecimal("0");
+    private BigDecimal actualPrice = calculateActualPrice();
     private String description;
+
+
+
+    private BigDecimal calculateActualPrice (){
+        BigDecimal oneHundred = new BigDecimal("100");
+        BigDecimal differenceForCalculation = oneHundred.subtract(discount).divide(oneHundred, 2);
+        return getPrice().multiply(differenceForCalculation);
+    }
 
     public void updateDiscount(DiscountToSet discountToSet) {
         discount = discountToSet.getDiscount();
